@@ -53,6 +53,7 @@ export default function Contact() {
             setFormState(initialState);
         } catch (error) {
             setStatus("error");
+            console.error("Error sending email:", error);
         }
     };
 
