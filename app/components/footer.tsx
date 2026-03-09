@@ -16,7 +16,7 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-col justify-center gap-4">
-          <Link href="/" className="rounded-sm bg-blue-700">
+          <Link href="https://www.oisca.ac.jp" className="rounded-sm bg-blue-700">
             <Image
               src="/nakano.png"
               alt="学校法人中野学園 オイスカ開発教育専門学校"
@@ -26,7 +26,7 @@ export default function Footer() {
               priority
             />
           </Link>
-          <Link href="/" className="rounded-sm bg-white">
+          <Link href="https://www.oisca.ed.jp" className="rounded-sm bg-white">
             <Image
               src="/highSchool.png"
               alt="オイスカ浜松国際高等学校"
