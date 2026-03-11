@@ -6,7 +6,7 @@ import Footer from "./components/footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
+  variable: "--font-yu-mincho",
   weight: "100 900",
 });
 const geistMono = localFont({
