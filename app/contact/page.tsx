@@ -23,6 +23,10 @@ const initialState: ContactFormState = {
     message: "",
 };
 
+const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
 export default function Contact() {
     const [formState, setFormState] = useState<ContactFormState>(initialState);
     const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -37,8 +41,11 @@ export default function Contact() {
         setStatus("sending");
 
         try {
-            // EmailJS example (replace with your service/template IDs):
-            await emailjs.send("service_v0cl8gj", "template_4iliybk", {
+            if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+                throw new Error("EmailJS is not configured. Check NEXT_PUBLIC_EMAILJS_* variables.");
+            }
+
+            await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
                name: formState.name,
                company: formState.company,
                region: formState.region,
@@ -46,6 +53,8 @@ export default function Contact() {
                email: formState.email,
                subject: formState.subject,
                message: formState.message,
+             }, {
+                publicKey: EMAILJS_PUBLIC_KEY,
              });
 
             await new Promise((resolve) => setTimeout(resolve, 500));
@@ -53,7 +62,20 @@ export default function Contact() {
             setFormState(initialState);
         } catch (error) {
             setStatus("error");
-            console.error("Error sending email:", error);
+            const emailJsError = error as {
+                message?: string;
+                text?: string;
+                status?: number;
+                name?: string;
+            };
+
+            console.error("Error sending email:", {
+                name: emailJsError?.name,
+                message: emailJsError?.message,
+                status: emailJsError?.status,
+                text: emailJsError?.text,
+                raw: error,
+            });
         }
     };
 
