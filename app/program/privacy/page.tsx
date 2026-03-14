@@ -4,7 +4,7 @@ export default function page() {
     return (
         <main className="bg-white overflow-x-hidden">
             <ProgramSelect selection="privacy"/>
-            <section className="mx-auto mb-8 max-w-4xl">
+            <section className="mx-auto mb-8 max-sm:max-w-xs justify-center">
                 <h1 className="pt-10 text-blue-700 text-xl md:text-2xl font-bold">プライバシーポリシー</h1>
                 <section className="font-semibold">
                     <p className="my-4 text-xs indent-4 leading-relaxed text-slate-600 md:text-sm">

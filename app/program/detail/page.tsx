@@ -5,7 +5,7 @@ export default function page() {
     return (
         <main className="bg-white overflow-x-hidden">
             <ProgramSelect selection="detail"/>
-            <section className="mx-auto mb-8 max-w-4xl">
+            <section className="mx-auto mb-8 max-sm:max-w-[300px] max-w-4xl">
                 <h1 className="pt-10 text-blue-700 text-2xl md:text-4xl text-center font-bold">講習実施施設・講習内容</h1>
                 <h1 className="pt-10 text-blue-700 text-xl md:text-2xl font-bold">講習実施施設</h1>
                 <section className="font-semibold">
